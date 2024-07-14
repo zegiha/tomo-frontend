@@ -1,0 +1,28 @@
+.sidebarContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 220px;
+  height: 100vh;
+  padding: 20px;
+
+  background: var(--gray500);
+}
+.profileContainer {
+  display: flex;
+  gap: 8px;
+}
+.profileImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+  border-radius: 100%;
+  background-color: var(--gray900);
+}
+.profileImage {
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+}
