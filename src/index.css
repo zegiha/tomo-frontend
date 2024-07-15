@@ -9,3 +9,17 @@
   --gray600: #EBEBEB;
   --gray500: #F2F2F2;
 }
+
+.text-s-20, .text-s-24 {
+  font-weight: 600;
+  color: var(--gray900);
+}
+
+.text-m-16, .text-m-20, .text-m-24 {
+  font-weight: 500;
+  color: var(--gray900);
+}
+
+.text-m-16 {font-size: 16px;}
+.text-m-20, .text-s-20 {font-size: 20px;}
+.text-m-24, .text-s-24 {font-size: 24px;}
