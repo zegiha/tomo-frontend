@@ -10,6 +10,9 @@ interface RowContextInterface {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  margin?: string;
+  maxWidth?: string;
+  flex?: string;
 }
 
 const RowContext = createContext<RowContextInterface>({ gap: 0 });
@@ -24,6 +27,9 @@ interface RowProps {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  margin?: string;
+  maxWidth?: string;
+  flex?: string;
 }
 
 const Row = ({ children }: RowProps) => {
@@ -39,6 +45,9 @@ const Row = ({ children }: RowProps) => {
     backgroundColor: context.backgroundColor,
     borderRadius: context.borderRadius ? `${context.borderRadius}px` : undefined,
     border: context.border,
+    margin: context.margin,
+    maxWidth: context.maxWidth,
+    flex: context.flex
   };
 
   return <div style={style}>{children}</div>;

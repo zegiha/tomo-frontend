@@ -10,6 +10,9 @@ interface ColContextInterface {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  margin?: string;
+  maxWidth?: string;
+  flex?: string;
 }
 
 const ColContext = createContext<ColContextInterface>({ gap: 0 });
@@ -24,6 +27,9 @@ interface ColProps {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  margin?: string;
+  maxWidth?: string;
+  flex?: string;
 }
 
 const Col = ({ children }: ColProps) => {
@@ -40,6 +46,9 @@ const Col = ({ children }: ColProps) => {
     backgroundColor: context.backgroundColor,
     borderRadius: context.borderRadius ? `${context.borderRadius}px` : undefined,
     border: context.border,
+    margin: context.margin,
+    maxWidth: context.maxWidth,
+    flex: context.flex
   };
 
   return <div style={style}>{children}</div>;
