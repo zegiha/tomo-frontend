@@ -1,9 +1,8 @@
 import { createContext, ReactNode, useContext } from "react";
 
-interface ColContextInterface {
+interface ColStyles {
   justifyContent?: string;
   alignItems?: string;
-  gap: number;
   width?: string;
   height?: string;
   padding?: string;
@@ -13,24 +12,17 @@ interface ColContextInterface {
   margin?: string;
   maxWidth?: string;
   flex?: string;
+}
+
+interface ColContextInterface extends ColStyles {
+  gap: number;
+}
+
+interface ColProps extends ColStyles {
+  children?: ReactNode;
 }
 
 const ColContext = createContext<ColContextInterface>({ gap: 0 });
-
-interface ColProps {
-  children: ReactNode;
-  justifyContent?: string;
-  alignItems?: string;
-  width?: string;
-  height?: string;
-  padding?: string;
-  backgroundColor?: string;
-  borderRadius?: number;
-  border?: string;
-  margin?: string;
-  maxWidth?: string;
-  flex?: string;
-}
 
 const Col = ({ children }: ColProps) => {
   const context = useContext(ColContext);

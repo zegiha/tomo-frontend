@@ -1,9 +1,8 @@
 import { createContext, ReactNode, useContext } from "react";
 
-interface RowContextInterface {
+interface RowStyles {
   justifyContent?: string;
   alignItems?: string;
-  gap: number;
   width?: string;
   height?: string;
   padding?: string;
@@ -13,24 +12,17 @@ interface RowContextInterface {
   margin?: string;
   maxWidth?: string;
   flex?: string;
+}
+
+interface RowContextInterface extends RowStyles {
+  gap: number;
+}
+
+interface RowProps extends RowStyles {
+  children?: ReactNode;
 }
 
 const RowContext = createContext<RowContextInterface>({ gap: 0 });
-
-interface RowProps {
-  children: ReactNode;
-  justifyContent?: string;
-  alignItems?: string;
-  width?: string;
-  height?: string;
-  padding?: string;
-  backgroundColor?: string;
-  borderRadius?: number;
-  border?: string;
-  margin?: string;
-  maxWidth?: string;
-  flex?: string;
-}
 
 const Row = ({ children }: RowProps) => {
   const context = useContext(RowContext);
