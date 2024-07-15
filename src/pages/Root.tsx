@@ -25,7 +25,7 @@ function LayoutWithHeader({children}: {children: ReactNode}) {
 function Sidebar() {
   return (
     <div className={sidebarStyle.sidebarContainer}>
-      <Row8>
+      <Row8 alignItems="center">
         <div className={sidebarStyle.profileImageContainer}>
           <img src={tmpImage} alt="profileImage" className={sidebarStyle.profileImage}/>
         </div>
@@ -33,6 +33,7 @@ function Sidebar() {
           <span className="text-m-20">이서율</span>
           <Row2>
             <SettingIcon/>
+            <span style={{color: "var(--gray-)"}} className="text-m-16">설정</span>
           </Row2>
         </Col4>
       </Row8>
