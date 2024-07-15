@@ -1,5 +1,5 @@
 import {Fragment, ReactNode} from "react";
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 import tmpImage from "@assets/profileTMPImage.jpg";
 import {SettingIcon, HomeIcon, ReportIcon} from "@assets/icons";
@@ -13,22 +13,31 @@ import {appStyle, sidebarStyle} from "@styles/index";
 
 function Header() {
   return (
-    <RowSpacebetween
+    <Row0
+      justifyContent="center"
       width="100%"
-      maxWidth="900px"
-      padding="16px 20px"
-      margin="0 auto"
+      padding="0 20px"
       borderBottom="1px solid var(--gray600)"
     >
-      <Row0 alignItems="center">
-        <HomeIcon width="24px" height="24px" />
-        <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
-      </Row0>
-      <Row0 alignItems="center">
-        <ReportIcon width="24px" height="24px" />
-        <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
-      </Row0>
-    </RowSpacebetween>
+      <RowSpacebetween
+        width="100%"
+        maxWidth="900px"
+        padding="16px 0"
+      >
+        <Link to="/">
+          <Row0 alignItems="center">
+            <HomeIcon width="24px" height="24px" />
+            <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
+          </Row0>
+        </Link>
+        <Link to="/report">
+          <Row0 alignItems="center">
+            <ReportIcon width="24px" height="24px" />
+            <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
+          </Row0>
+        </Link>
+      </RowSpacebetween>
+    </Row0>
   );
 }
 

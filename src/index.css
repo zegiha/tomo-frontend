@@ -14,6 +14,10 @@
   --gray500: #F2F2F2;
 }
 
+a {
+  text-decoration: none;
+}
+
 .text-s-20, .text-s-24 {
   font-family: "Pretendard Variable", sans-serif;
   font-weight: 600;
