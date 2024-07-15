@@ -1,0 +1,35 @@
+.chatProfileImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: #232323;
+    object-fit: contain;
+}
+
+.chatBubble {
+    border-radius: 12px;
+    border: 2px solid #F2F2F2;
+    padding: 12px;
+}
+
+.translateBtn {
+    cursor: pointer;
+
+    padding: 4px;
+    border-radius: 9999px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #A3A3A3;
+}
+
+.translateBtn__icon {
+    width: 20px;
+    height: 20px;
+}
