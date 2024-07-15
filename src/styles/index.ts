@@ -1,5 +1,5 @@
-import appStyle from "@styles/app.module.css";
-import sidebarStyle from "@styles/sidebar.module.css";
+import appStyle from "@styles/root/app.module.css";
+import sidebarStyle from "@styles/root/sidebar.module.css";
 
 export {
   appStyle,

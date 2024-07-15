@@ -9,6 +9,7 @@ interface RowStyles {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  borderBottom?: string;
   margin?: string;
   maxWidth?: string;
   flex?: string;
@@ -37,6 +38,7 @@ const Row = ({ children }: RowProps) => {
     backgroundColor: context.backgroundColor,
     borderRadius: context.borderRadius ? `${context.borderRadius}px` : undefined,
     border: context.border,
+    borderBottom: context.borderBottom,
     margin: context.margin,
     maxWidth: context.maxWidth,
     flex: context.flex

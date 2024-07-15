@@ -9,6 +9,7 @@ interface ColStyles {
   backgroundColor?: string;
   borderRadius?: number;
   border?: string;
+  borderBottom?: string;
   margin?: string;
   maxWidth?: string;
   flex?: string;
@@ -38,6 +39,7 @@ const Col = ({ children }: ColProps) => {
     backgroundColor: context.backgroundColor,
     borderRadius: context.borderRadius ? `${context.borderRadius}px` : undefined,
     border: context.border,
+    borderBottom: context.borderBottom,
     margin: context.margin,
     maxWidth: context.maxWidth,
     flex: context.flex
@@ -56,6 +58,7 @@ const createColComponent = (defaultConfig: ColContextInterface) => (props: ColPr
   );
 };
 
+export const Col0 = createColComponent({ gap: 0 });
 export const Col4 = createColComponent({ gap: 4 });
 export const Col8 = createColComponent({ gap: 8 });
 export const Col12 = createColComponent({ gap: 12 });

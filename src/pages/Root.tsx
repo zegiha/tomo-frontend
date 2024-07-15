@@ -2,10 +2,10 @@ import {Fragment, ReactNode} from "react";
 import {Outlet} from "react-router-dom";
 
 import tmpImage from "@assets/profileTMPImage.jpg";
-import {SettingIcon} from "@assets/icons";
+import {SettingIcon, HomeIcon, ReportIcon} from "@assets/icons";
 
-import {Row2, Row8} from "@components/atomic/rowAndColumns/Row.tsx";
-import {Col4} from "@components/atomic/rowAndColumns/Col.tsx";
+import {Row0, Row2, Row8, RowSpacebetween} from "@components/atomic/rowAndColumns/Row.tsx";
+import {Col0, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
 import {Divider} from "@components/atomic";
 
 import {appStyle, sidebarStyle} from "@styles/index";
@@ -13,15 +13,32 @@ import {appStyle, sidebarStyle} from "@styles/index";
 
 function Header() {
   return (
-    <></>
+    <RowSpacebetween
+      width="100%"
+      maxWidth="900px"
+      padding="16px 20px"
+      margin="0 auto"
+      borderBottom="1px solid var(--gray600)"
+    >
+      <Row0 alignItems="center">
+        <HomeIcon width="24px" height="24px" />
+        <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
+      </Row0>
+      <Row0 alignItems="center">
+        <ReportIcon width="24px" height="24px" />
+        <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
+      </Row0>
+    </RowSpacebetween>
   );
 }
 
 function LayoutWithHeader({children}: {children: ReactNode}) {
   return (
     <Fragment>
-      <Header />
-      {children}
+      <Col0 width="100%">
+        <Header />
+        {children}
+      </Col0>
     </Fragment>
   );
 }
