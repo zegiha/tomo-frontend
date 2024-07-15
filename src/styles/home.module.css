@@ -1,0 +1,22 @@
+.characterContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  align-items: center;
+}
+@media (max-width: 1110px) {
+  .characterContainer {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+}
+
+.characterItemContents {
+  width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: var(--gray800);
+}

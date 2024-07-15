@@ -142,7 +142,13 @@ function Root() {
     <div className={appStyle.container}>
       <LayoutWithSidebar>
         <LayoutWithHeader>
-          <Outlet />
+          <Row0
+            justifyContent="center"
+            width="100%"
+            padding="0 20px"
+          >
+            <Outlet />
+          </Row0>
         </LayoutWithHeader>
       </LayoutWithSidebar>
     </div>

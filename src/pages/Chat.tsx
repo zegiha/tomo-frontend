@@ -1,4 +1,4 @@
-import { Row0, Row8 } from "@/components/atomic/rowAndColumns/Row";
+import { Row8 } from "@/components/atomic/rowAndColumns/Row";
 import styles from "@styles/chat.module.css"
 import classNames from "classnames/bind";
 
@@ -55,21 +55,19 @@ function ChatBox(props: ChatBoxProps) {
 
 function Chat() {
   return (
-    <Row0 padding="46px 20px 0px 20px" maxWidth="900px" margin="0 auto" width="100%">
-      <Col20 width="100%">
-        <ChatBox profileImgUrl="https://r2.etty.dev/bb.jpg" isMine={false} messages={[{
-          formatted: "abcd",
-        }, {
-          formatted: "abcd",
-        }]} />
+    <Col20 width="100%" padding="46px 0 0 0" maxWidth="900px">
+      <ChatBox profileImgUrl="https://r2.etty.dev/bb.jpg" isMine={false} messages={[{
+        formatted: "abcd",
+      }, {
+        formatted: "abcd",
+      }]} />
 
-        <ChatBox profileImgUrl="https://r2.etty.dev/bb.jpg" isMine={true} messages={[{
-          formatted: "abcd",
-        }, {
-          formatted: "abcd",
-        }]} />
-      </Col20>
-    </Row0>
+      <ChatBox profileImgUrl="https://r2.etty.dev/bb.jpg" isMine={true} messages={[{
+        formatted: "abcd",
+      }, {
+        formatted: "abcd",
+      }]} />
+    </Col20>
   );
 }
 
