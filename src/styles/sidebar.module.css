@@ -1,6 +1,7 @@
 .sidebarContainer {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 
   width: 220px;
   height: 100vh;
@@ -24,5 +25,10 @@
 .profileImage {
   width: 44px;
   height: 44px;
+  border-radius: 100%;
+}
+.characterImage {
+  width: 32px;
+  height: 32px;
   border-radius: 100%;
 }
