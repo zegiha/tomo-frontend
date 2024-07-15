@@ -64,16 +64,13 @@ interface characterBarProps {
 
 function CharacterBar({isActive, characterImage, characterName}: characterBarProps) {
   return (
-    <Row8
-      alignItems="center"
-      width="calc(100% - 24px)"
-      padding="12px"
-      backgroundColor={isActive ? "var(--gray700)" : "var(--gray-600)"}
-      borderRadius={12}
+    <div
+      className={sidebarStyle.characterBarContainer}
+      style={isActive ? { backgroundColor: "var(--gray600)" } : {}}
     >
       <img src={characterImage} alt="character image" className={sidebarStyle.characterImage} />
       <span className="text-m-20">{characterName}</span>
-    </Row8>
+    </div>
   );
 }
 
