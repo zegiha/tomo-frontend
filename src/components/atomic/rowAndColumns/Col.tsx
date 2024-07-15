@@ -30,6 +30,7 @@ const Col = ({ children }: ColProps) => {
   const context = useContext(ColContext);
   const style = {
     display: "flex",
+    flexdirection: "column",
     justifyContent: context.justifyContent,
     alignItems: context.alignItems,
     gap: `${context.gap}px`,
@@ -54,9 +55,9 @@ const createColComponent = (defaultConfig: ColContextInterface) => (props: ColPr
   );
 };
 
-export const ColSpacebetween = createColComponent({ gap: 0, justifyContent: "space-between" });
-export const Col0 = createColComponent({ gap: 0 });
 export const Col4 = createColComponent({ gap: 4 });
 export const Col8 = createColComponent({ gap: 8 });
 export const Col12 = createColComponent({ gap: 12 });
+export const Col20 = createColComponent({ gap: 20 })
 export const Col32 = createColComponent({ gap: 32 });
+export const Col92 = createColComponent({ gap: 92 });

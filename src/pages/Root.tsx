@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import {Fragment, ReactNode} from "react";
 import "@styles/app.css";
 import "@styles/sidebar.css";
 import {Outlet} from "react-router-dom";
@@ -18,20 +18,31 @@ function Sidebar() {
   );
 }
 
-function LayoutWithSidebarAndHeader({children}: {children: ReactNode}) {
+function LayoutWithHeader({children}: {children: ReactNode}) {
   return (
-    <div className="container">
-      <Sidebar />
-    </div>
+    <div>{children}</div>
   );
 }
 
-function App() {
+function LayoutWithSidebar({children}: {children: ReactNode}) {
   return (
-    <LayoutWithSidebarAndHeader>
-      <Outlet />
-    </LayoutWithSidebarAndHeader>
+    <Fragment>
+      <Sidebar />
+      {children}
+    </Fragment>
+  );
+}
+
+function Root() {
+  return (
+    <div className="container">
+      <LayoutWithSidebar>
+        <LayoutWithHeader>
+          <Outlet />
+        </LayoutWithHeader>
+      </LayoutWithSidebar>
+    </div>
   )
 }
 
-export default App
+export default Root
