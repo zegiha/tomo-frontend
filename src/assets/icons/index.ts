@@ -1,4 +1,4 @@
-import SettingIcon from "@assets/icons/settingIcon.svg";
+import SettingIcon from "@assets/icons/settingIcon.svg?react";
 
 export {
   SettingIcon,
