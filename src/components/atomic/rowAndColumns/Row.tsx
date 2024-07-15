@@ -56,6 +56,7 @@ const createRowComponent = (defaultConfig: RowContextInterface) => (props: RowPr
 
 export const RowSpacebetween = createRowComponent({ gap: 0, justifyContent: "space-between" });
 export const Row0 = createRowComponent({ gap: 0 });
+export const Row2 = createRowComponent({ gap: 2 });
 export const Row4 = createRowComponent({ gap: 4 });
 export const Row8 = createRowComponent({ gap: 8 });
 export const Row12 = createRowComponent({ gap: 12 });

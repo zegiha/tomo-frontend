@@ -30,7 +30,7 @@ const Col = ({ children }: ColProps) => {
   const context = useContext(ColContext);
   const style = {
     display: "flex",
-    flexdirection: "column",
+    flexDirection: "column" as const,
     justifyContent: context.justifyContent,
     alignItems: context.alignItems,
     gap: `${context.gap}px`,

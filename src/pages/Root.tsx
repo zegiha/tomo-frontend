@@ -1,10 +1,11 @@
 import {Fragment, ReactNode} from "react";
-import "@styles/app.css";
-import "@styles/sidebar.css";
+import appStyle from "@styles/app.module.css";
+import sidebarStyle from "@styles/sidebar.module.css";
 import {Outlet} from "react-router-dom";
 import tmpImage from "@assets/profileTMPImage.jpg";
-import {Row8} from "@components/atomic/rowAndColumns/Row.tsx";
-import {Col4} from "../components/atomic/rowAndColumns/Col.tsx";
+import {Row2, Row8} from "@components/atomic/rowAndColumns/Row.tsx";
+import {Col4} from "@components/atomic/rowAndColumns/Col.tsx";
+import {SettingIcon} from "@assets/icons";
 
 function Header() {
   return (
@@ -23,13 +24,16 @@ function LayoutWithHeader({children}: {children: ReactNode}) {
 
 function Sidebar() {
   return (
-    <div className="sidebarContainer">
+    <div className={sidebarStyle.sidebarContainer}>
       <Row8>
-        <div className="profileImageContainer">
-          <img src={tmpImage} alt="profileImage" className="profileImage"/>
+        <div className={sidebarStyle.profileImageContainer}>
+          <img src={tmpImage} alt="profileImage" className={sidebarStyle.profileImage}/>
         </div>
         <Col4>
           <span className="text-m-20">이서율</span>
+          <Row2>
+            <SettingIcon/>
+          </Row2>
         </Col4>
       </Row8>
     </div>
@@ -47,7 +51,7 @@ function LayoutWithSidebar({children}: {children: ReactNode}) {
 
 function Root() {
   return (
-    <div className="container">
+    <div className={appStyle.container}>
       <LayoutWithSidebar>
         <LayoutWithHeader>
           <Outlet />
