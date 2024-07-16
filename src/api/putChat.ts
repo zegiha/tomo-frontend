@@ -1,5 +1,5 @@
-import axios from "axios";
 import {ChatMessage} from "@types/chat/messageTypes.ts";
+import baseAxios from "./axios.ts";
 
 function concatFloat32Array(arrays: Float32Array[]) {
   const result = new Float32Array(arrays.reduce((acc, curr) => acc + curr.length, 0));
@@ -33,8 +33,8 @@ async function putChat(recordSamples: Float32Array[]) {
   const recordFiles = await convertToBase64(recordSamples);
 
   try {
-    const {data} = await axios.put(
-      "https://tomo.deltalab.dev/session/0/chat",
+    const {data} = await baseAxios.put(
+      "session/0/chat",
       JSON.stringify({audio: recordFiles}),
       {headers: {"Content-Type": "application/json"}}
     );

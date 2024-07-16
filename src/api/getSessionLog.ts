@@ -1,9 +1,9 @@
-import axios from "axios";
+import baseAxios from "./axios.ts";
 import {ChatMessage, Message} from "../types/chat/messageTypes.ts";
 
 async function getSessionLog() {
   try {
-    const {data} = await axios.get("https://tomo.deltalab.dev/session/0/log", {
+    const {data} = await baseAxios.get("session/0/log", {
       headers: {
         "Content-Type": "application/json",
       }

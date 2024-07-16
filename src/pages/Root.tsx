@@ -1,4 +1,4 @@
-import {Fragment, ReactNode} from "react";
+import {Fragment, ReactNode, useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
 
 import tmpImage from "@assets/profileTMPImage.jpg";
@@ -9,6 +9,7 @@ import {Col0, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
 import {Divider} from "@components/atomic";
 
 import {appStyle, sidebarStyle} from "@styles/index";
+import {getList} from "@api/index";
 
 
 function Header() {
@@ -57,41 +58,14 @@ function LayoutWithHeader({children}: {children: ReactNode}) {
 
 
 
-const characterDummy = [
-  {
-    isActive: false,
-    characterName: '지동갓',
-    characterImage: tmpImage,
-  },
-  {
-    isActive: true,
-    characterName: '지동갓',
-    characterImage: tmpImage,
-  },
-  {
-    isActive: false,
-    characterName: '지동갓',
-    characterImage: tmpImage,
-  },
-  {
-    isActive: false,
-    characterName: '지동갓',
-    characterImage: tmpImage,
-  },
-  {
-    isActive: false,
-    characterName: '지동갓',
-    characterImage: tmpImage,
-  },
-];
-
 interface characterBarProps {
   isActive: boolean;
   characterImage: string;
   characterName: string;
+  sessionId: number;
 }
 
-function CharacterBar({isActive, characterImage, characterName}: characterBarProps) {
+function CharacterBar({isActive, characterImage, characterName, sessionId}: characterBarProps) {
   return (
     <div
       className={sidebarStyle.characterBarContainer}
@@ -104,6 +78,30 @@ function CharacterBar({isActive, characterImage, characterName}: characterBarPro
 }
 
 function Sidebar() {
+  const [characterInfo, setCharacterInfo] = useState<Array<characterBarProps>>([]);
+
+  useEffect(() => {
+    getList().then(data => {
+      const characterList: Array<characterBarProps> = [];
+
+      data.map(v => {
+        const tmpInfo = {
+          isActive: false,
+          sessionId: v.session_id,
+          characterImage: tmpImage,
+          characterName: v.name,
+        };
+        characterList.push(tmpInfo);
+      })
+
+      setCharacterInfo(characterList);
+    })
+  }, []);
+
+  const sidebarNavigationHandler = () => {
+    {{/*ToDo*/}}
+  }
+
   return (
     <div className={sidebarStyle.sidebarContainer}>
       <Row8 alignItems="center">
@@ -119,13 +117,15 @@ function Sidebar() {
         </Col4>
       </Row8>
       <Divider/>
-      {characterDummy.map((item, index) =>
-        <CharacterBar
-          key={index}
-          isActive={item.isActive}
-          characterImage={item.characterImage}
-          characterName={item.characterName}
-        />
+      {characterInfo.map((item, index) =>
+        <div key={index} onClick={() => sidebarNavigationHandler()}>
+          <CharacterBar
+            isActive={item.isActive}
+            characterImage={item.characterImage}
+            characterName={item.characterName}
+            sessionId={item.sessionId}
+          />
+        </div>
       )}
     </div>
   );
