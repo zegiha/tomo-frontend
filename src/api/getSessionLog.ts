@@ -1,9 +1,13 @@
 import baseAxios from "./axios.ts";
-import {ChatMessage, Message} from "../types/chat/messageTypes.ts";
+import { ChatMessage, Message } from "../types/chat/messageTypes.ts";
 
-async function getSessionLog() {
+interface ISessionLogRes {
+  role: string; formatted_text: string; content: string; translated: any; pronunciation: any;
+}
+
+async function getSessionLog(sessionId: string = "0") {
   try {
-    const {data} = await baseAxios.get("session/0/log", {
+    const { data } = await baseAxios.get(`session/${sessionId}/log`, {
       headers: {
         "Content-Type": "application/json",
       }
@@ -11,7 +15,7 @@ async function getSessionLog() {
     console.log(data);
 
     const result: Array<ChatMessage> = [];
-    data.map(v => {
+    data.map((v: ISessionLogRes) => {
       const tmpMessage: Message = {
         id: `${v.role}MessageId`,
         formattedText: v.role === "user" ? v.formatted_text : v.content,
