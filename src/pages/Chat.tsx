@@ -124,8 +124,8 @@ function Chat() {
     })
   }
   return (
-    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%" height="calc(100vh - 57px)">
-      <Col20 width="100%" flex="1">
+    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%">
+      <Col20 width="100%" flex="1" padding="0 0 32px 0">
         {chatList.map(e =>
           <ChatBox key={useId()} profileImgUrl={e.profileImgUrl} isMine={e.isMine} messages={e.messages} />
         )}
