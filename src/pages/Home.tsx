@@ -1,10 +1,14 @@
-import {Col92, Col32, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
-import {Row12} from "@components/atomic/rowAndColumns/Row.tsx";
+import { Col92, Col32, Col4 } from "@components/atomic/rowAndColumns/Col.tsx";
+import { Row12 } from "@components/atomic/rowAndColumns/Row.tsx";
 
 import {homeStyle} from "@styles/index";
 import {ReportScore, ReportChat} from "@/components/report";
 
-function CharacterItem({title, subTitle}: {title: string, subTitle: string}) {
+import bannerAImg from "@assets/img/bannerA.png"
+import bannerBImg from "@assets/img/bannerB.png"
+import Button from "@/components/common/Button";
+
+function CharacterItem({ title, subTitle }: { title: string, subTitle: string }) {
   return (
     <Row12
       width="max-content"
@@ -13,7 +17,7 @@ function CharacterItem({title, subTitle}: {title: string, subTitle: string}) {
       backgroundColor="var(--gray500)"
       borderRadius={12}
     >
-      <div style={{width: "64px", height: "64px", borderRadius: "64px", backgroundColor: "var(--gray900)"}}/>
+      <div style={{ width: "64px", height: "64px", borderRadius: "64px", backgroundColor: "var(--gray900)" }} />
       <Col4>
         <span className="text-m-20">{title}</span>
         <div className={`${homeStyle.characterItemContents} text-m-16`}>{subTitle}</div>
@@ -104,7 +108,30 @@ function DefaultCharacter() {
 
 function MakeNewCharacter() {
   return (
-    <>{/*ToDo*/}</>
+    <>
+      <Col32>
+        <span className="text-s-24">나만의 새로운 캐릭터!</span>
+        <Col32>
+          <div className={homeStyle.bannerImgWrapper} data-first>
+            <img src={bannerAImg} alt="" />
+            <img src={bannerAImg} alt="" />
+          </div>
+          <div className={homeStyle.bannerText}>
+            원하는 모든 캐릭터를
+            <br />
+            <span>만들고, 대화하고, 공부하세요!</span>
+          </div>
+          <div className={homeStyle.bannerImgWrapper} data-second>
+            <img src={bannerBImg} alt="" />
+            <img src={bannerBImg} alt="" />
+          </div>
+
+          <Button className={homeStyle.newCharacterBtn}>
+            캐릭터 추가하기
+          </Button>
+        </Col32>
+      </Col32>
+    </>
   );
 }
 
