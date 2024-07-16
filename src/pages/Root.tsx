@@ -1,5 +1,5 @@
 import {Fragment, ReactNode, useEffect, useState} from "react";
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 
 import tmpImage from "@assets/profileTMPImage.jpg";
 import {SettingIcon, HomeIcon, ReportIcon} from "@assets/icons";
@@ -62,10 +62,10 @@ interface characterBarProps {
   isActive: boolean;
   characterImage: string;
   characterName: string;
-  sessionId: number;
+  sessionId?: number;
 }
 
-function CharacterBar({isActive, characterImage, characterName, sessionId}: characterBarProps) {
+function CharacterBar({isActive, characterImage, characterName}: characterBarProps) {
   return (
     <div
       className={sidebarStyle.characterBarContainer}
@@ -79,6 +79,7 @@ function CharacterBar({isActive, characterImage, characterName, sessionId}: char
 
 function Sidebar() {
   const [characterInfo, setCharacterInfo] = useState<Array<characterBarProps>>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getList().then(data => {
@@ -98,8 +99,25 @@ function Sidebar() {
     })
   }, []);
 
-  const sidebarNavigationHandler = () => {
-    {{/*ToDo*/}}
+  const sidebarNavigationHandler = (character: characterBarProps, index: number) => {
+    if(!character.isActive) {
+      const tmpCharacterInfo = [...characterInfo];
+      for(let i = 0; i < tmpCharacterInfo.length; i++) {
+        if(tmpCharacterInfo[i].isActive) {
+          tmpCharacterInfo[i].isActive = false;
+          break;
+        }
+      }
+      tmpCharacterInfo[index].isActive = true;
+      setCharacterInfo(tmpCharacterInfo);
+      navigate(`/chat/${character.sessionId}`);
+    }
+    else {
+      const tmpCharacterInfo = [...characterInfo];
+      tmpCharacterInfo[index].isActive = false;
+      setCharacterInfo(tmpCharacterInfo);
+      navigate('/');
+    }
   }
 
   return (
@@ -118,12 +136,11 @@ function Sidebar() {
       </Row8>
       <Divider/>
       {characterInfo.map((item, index) =>
-        <div key={index} onClick={() => sidebarNavigationHandler()}>
+        <div key={index} onClick={() => sidebarNavigationHandler(item, index)}>
           <CharacterBar
             isActive={item.isActive}
             characterImage={item.characterImage}
             characterName={item.characterName}
-            sessionId={item.sessionId}
           />
         </div>
       )}
