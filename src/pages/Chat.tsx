@@ -4,9 +4,10 @@ import classNames from "classnames/bind";
 import { VoiceBtnIcon, VoiceRecBtnIcon } from "@assets/icons"
 
 import { Col0, Col20 } from "@/components/atomic/rowAndColumns/Col";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatBox from "@/components/chat/ChatBox";
-import {putChat, getSessionLog} from "@api/index";
+import { putChat, getSessionLog } from "@api/index";
+import { useParams } from "react-router-dom";
 
 
 
@@ -64,13 +65,15 @@ class Voice {
 }
 
 function Chat() {
+  const { chattingName } = useParams()
+
   const [chatList, setChatList] = useState<Array<ChatMessage>>([]);
   const [isRecording, setIsRecording] = useState(false)
   const voice = useRef<Voice | null>(null)
 
   useEffect(() => {
-    getSessionLog().then((result) => {
-      if(result) setChatList(result);
+    getSessionLog(chattingName ?? "0").then((result) => {
+      if (result) setChatList(result);
       else console.log("getSessionLog api error");
       console.log(result);
     })
@@ -91,7 +94,7 @@ function Chat() {
         })
       } else {
         if (voice.current) {
-          putChat(voice.current.samplesList).then(result => {
+          putChat(chattingName ?? "0", voice.current.samplesList).then(result => {
             if (result) {
               const { userMessage, characterMessage } = result;
               setChatList(chatList => [...chatList, userMessage, characterMessage]);

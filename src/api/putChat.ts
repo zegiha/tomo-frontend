@@ -1,11 +1,11 @@
-import {ChatMessage} from "@types/chat/messageTypes.ts";
+import { ChatMessage } from "@types/chat/messageTypes.ts";
 import baseAxios from "./axios.ts";
 
 function concatFloat32Array(arrays: Float32Array[]) {
   const result = new Float32Array(arrays.reduce((acc, curr) => acc + curr.length, 0));
 
   let offset = 0;
-  for(const array of arrays) {
+  for (const array of arrays) {
     result.set(array, offset);
     offset += array.length;
   }
@@ -18,7 +18,7 @@ async function arrayBufferToBase64(buffer: ArrayBuffer) {
   const bytes = new Uint8Array(buffer);
   const len = buffer.byteLength;
 
-  for(let i = 0; i < len; i++) {binary += String.fromCharCode(bytes[i]);}
+  for (let i = 0; i < len; i++) { binary += String.fromCharCode(bytes[i]); }
   return window.btoa(binary);
 }
 
@@ -29,14 +29,14 @@ async function convertToBase64(recordSamples: Float32Array[]) {
   return await arrayBufferToBase64(buffer);
 }
 
-async function putChat(recordSamples: Float32Array[]) {
+async function putChat(sessionId: string, recordSamples: Float32Array[]) {
   const recordFiles = await convertToBase64(recordSamples);
 
   try {
-    const {data} = await baseAxios.put(
-      "session/0/chat",
-      JSON.stringify({audio: recordFiles}),
-      {headers: {"Content-Type": "application/json"}}
+    const { data } = await baseAxios.put(
+      `session/${sessionId}/chat`,
+      JSON.stringify({ audio: recordFiles }),
+      { headers: { "Content-Type": "application/json" } }
     );
 
     const userMessage: ChatMessage = {
@@ -58,7 +58,7 @@ async function putChat(recordSamples: Float32Array[]) {
       }]
     }
 
-    return {userMessage, characterMessage};
+    return { userMessage, characterMessage };
   } catch (e) {
     console.error(e);
   }
