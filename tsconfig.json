@@ -27,6 +27,8 @@
       "@pages/*": ["src/pages/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@api/*": ["src/api/*"],
+      "@types/*": ["src/types/*"],
     },
 
     "types": ["vite-plugin-svgr/client"]

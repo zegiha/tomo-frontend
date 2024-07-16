@@ -2,7 +2,7 @@ import classNames from "classnames/bind"
 import { Col8 } from "../atomic/rowAndColumns/Col"
 import styles from "@styles/chat.module.css"
 import { TranslateIcon } from "@/assets/icons"
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import { Row8 } from "../atomic/rowAndColumns/Row"
 
 const cn = classNames.bind(styles)
@@ -10,15 +10,22 @@ const cn = classNames.bind(styles)
 interface IMessage {
     id: string
     formattedText: string
+    translatedText: string
     formattedCorrectText?: string
     formattedCorrectPronounceText?: string
 }
 
-function BotChatBubble(props: { message: IMessage }) {
-    return <div className={cn("botChatBubble", "text-m-20")} dangerouslySetInnerHTML={{ __html: props.message.formattedText }} />
+function BotChatBubble(props: { message: IMessage, isTranslated: boolean }) {
+    return <div className={cn("botChatBubble", "text-m-20")}>
+        <div dangerouslySetInnerHTML={{ __html: props.message.formattedText }}/>
+        {props.isTranslated && props.message.translatedText && <div className={cn("sep")}/>}
+        {
+          props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{__html: props.message.translatedText}}/>
+        }
+    </div>
 }
 
-function MyChatBubble(props: { message: IMessage }) {
+function MyChatBubble(props: { message: IMessage, isTranslated: boolean }) {
     const needSep = props.message.formattedCorrectText || props.message.formattedCorrectPronounceText
     return <div className={cn("myChatBubble", "text-m-20")}>
         <div dangerouslySetInnerHTML={{ __html: props.message.formattedText }} />
@@ -30,6 +37,10 @@ function MyChatBubble(props: { message: IMessage }) {
         }
         {
             props.message.formattedCorrectPronounceText && <div dangerouslySetInnerHTML={{ __html: props.message.formattedCorrectPronounceText }} />
+        }
+        {props.isTranslated && props.message.translatedText && <div className={cn("sep")}/>}
+        {
+          props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{__html: props.message.translatedText}}/>
         }
     </div>
 }
@@ -70,7 +81,7 @@ function ChatBox({ isMine, profileImgUrl, messages }: ChatBoxProps) {
                 return (
                     <Row8 key={msg.id} alignItems="center">
                         {isLastMessage && isMine && <TranslateButton onClick={handleTranslate} />}
-                        <ChatBubble message={msg} />
+                        <ChatBubble message={msg} isTranslated={translated} />
                         {isLastMessage && !isMine && <TranslateButton onClick={handleTranslate} />}
                     </Row8>
                 );
