@@ -35,6 +35,39 @@ function RecentlyTalkedCharacter() {
 
 
 
+const chatData = [
+  {
+    isMine: false,
+    profileImageURL: "https://r2.etty.dev/bb.jpg",
+    messages: [
+      {
+        id: "1",
+        formattedText: "Lorem ipsum dolor amet sit?",
+      },
+      {
+        id: "2",
+        formattedText: "Lorem ipsum dolor amet sit?",
+      }
+    ]
+  },
+  {
+    isMine: true,
+    profileImageURL: "https://r2.etty.dev/bb.jpg",
+    messages: [
+      {
+        id: "1",
+        formattedText: "Lorem ipsum dolor amet sit?",
+        formattedCorrectText: "Lorem ipsum do l or amet sit?",
+        formattedCorrectPronounceText: "발음 발음 입숨 발음 발음 발음 발음",
+      },
+      {
+        id: "2",
+        formattedText: "Lorem ipsum dolor amet sit?",
+      }
+    ]
+  },
+];
+
 function LastReport() {
   return (
     <Col32>
@@ -47,7 +80,9 @@ function LastReport() {
           fluency: 53,
         }}
       />
-      <ReportChat />
+      <ReportChat
+        chatData={chatData}
+      />
     </Col32>
   );
 }

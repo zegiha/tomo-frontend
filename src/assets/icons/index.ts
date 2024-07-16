@@ -4,6 +4,7 @@ import HomeIcon from "@assets/icons/homeIcon.svg?react";
 import ReportIcon from "@assets/icons/reportIcon.svg?react"
 import VoiceBtnIcon from "@assets/icons/voiceBtn.svg?react";
 import VoiceRecBtnIcon from "@assets/icons/voiceRecBtn.svg?react";
+import ArrowIcon from "@assets/icons/arrowIcon.svg?react"
 
 export {
   SettingIcon,
@@ -11,5 +12,6 @@ export {
   HomeIcon,
   ReportIcon,
   VoiceBtnIcon,
-  VoiceRecBtnIcon
+  VoiceRecBtnIcon,
+  ArrowIcon,
 }
