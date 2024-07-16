@@ -2,7 +2,7 @@ import {Col92, Col32, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
 import {Row12} from "@components/atomic/rowAndColumns/Row.tsx";
 
 import {homeStyle} from "@styles/index";
-import {ReportScore} from "@/components/report";
+import {ReportScore, ReportChat} from "@/components/report";
 
 function CharacterItem({title, subTitle}: {title: string, subTitle: string}) {
   return (
@@ -47,6 +47,7 @@ function LastReport() {
           fluency: 53,
         }}
       />
+      <ReportChat />
     </Col32>
   );
 }
