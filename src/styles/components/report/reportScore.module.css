@@ -1,0 +1,9 @@
+.scoreCircle {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  stroke-dasharray: 101;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+}

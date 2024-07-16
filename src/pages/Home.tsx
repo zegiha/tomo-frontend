@@ -2,6 +2,7 @@ import {Col92, Col32, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
 import {Row12} from "@components/atomic/rowAndColumns/Row.tsx";
 
 import {homeStyle} from "@styles/index";
+import {ReportScore} from "@/components/report";
 
 function CharacterItem() {
   return (
@@ -34,6 +35,26 @@ function RecentlyTalkedCharacter() {
   );
 }
 
+
+
+function LastReport() {
+  return (
+    <Col32>
+      <span className="text-s-24">마지막 리포트</span>
+      <ReportScore
+        allScore={82}
+        subScore={{
+          accuracy: 16,
+          completeness: 74,
+          fluency: 53,
+        }}
+      />
+    </Col32>
+  );
+}
+
+
+
 function Home() {
   return (
     <Col92
@@ -42,6 +63,7 @@ function Home() {
       padding="46px 0"
     >
       <RecentlyTalkedCharacter />
+      <LastReport />
     </Col92>
   );
 }

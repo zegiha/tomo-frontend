@@ -33,3 +33,5 @@ a {
 .text-m-16 {font-size: 16px;}
 .text-m-20, .text-s-20 {font-size: 20px;}
 .text-m-24, .text-s-24 {font-size: 24px;}
+
+.underline {text-decoration: underline;}
