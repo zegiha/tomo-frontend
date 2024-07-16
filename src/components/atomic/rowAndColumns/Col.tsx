@@ -13,6 +13,7 @@ interface ColStyles {
   margin?: string;
   maxWidth?: string;
   flex?: string;
+  overflow?: string;
 }
 
 interface ColContextInterface extends ColStyles {
@@ -42,7 +43,8 @@ const Col = ({ children }: ColProps) => {
     borderBottom: context.borderBottom,
     margin: context.margin,
     maxWidth: context.maxWidth,
-    flex: context.flex
+    flex: context.flex,
+    overflow: context.overflow
   };
 
   return <div style={style}>{children}</div>;
