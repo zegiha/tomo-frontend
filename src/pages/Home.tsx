@@ -9,6 +9,7 @@ import bannerBImg from "@assets/img/bannerB.png"
 import Button from "@/components/common/Button";
 import getReport from "@/api/report";
 import { useEffect, useState } from "react";
+import { getList } from "@/api";
 
 function CharacterItem({ title, subTitle }: { title: string, subTitle: string }) {
   return (
@@ -78,7 +79,11 @@ function LastReport() {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-    getReport("0").then(res => setScore(res.average_pronunciation))
+    getList().then(res => {
+      const last = res.sort((a: any, b: any) => b.last_active - a.last_active)[0]
+      getReport(last.session_id).then(res => setScore(res.average_pronunciation))
+    })
+
   }, [])
 
   return (
