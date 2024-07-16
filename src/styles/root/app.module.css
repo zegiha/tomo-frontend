@@ -1,17 +1,7 @@
 .container {
   display: flex;
   width: 100%;
-  position: relative;
-}
-
-.sidebarContainer {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100vh;
-  padding: 20px;
-}
-.profileContainer {
-
+  /*width: calc(100% - 260px);*/
+  /*margin-top: 56px;*/
+  /*margin-left: 260px;*/
 }

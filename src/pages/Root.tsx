@@ -13,31 +13,34 @@ import {appStyle, sidebarStyle} from "@styles/index";
 
 function Header() {
   return (
-    <Row0
-      justifyContent="center"
-      width="100%"
-      padding="0 20px"
-      borderBottom="1px solid var(--gray600)"
-    >
-      <RowSpacebetween
+    <div style={{position: "sticky", top: "0", right: "0", width: "100%"}}>
+      <Row0
+        justifyContent="center"
         width="100%"
-        maxWidth="900px"
-        padding="16px 0"
+        padding="0 20px"
+        borderBottom="1px solid var(--gray600)"
+        backgroundColor="white"
       >
-        <Link to="/">
-          <Row0 alignItems="center">
-            <HomeIcon width="24px" height="24px" />
-            <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
-          </Row0>
-        </Link>
-        <Link to="/report">
-          <Row0 alignItems="center">
-            <ReportIcon width="24px" height="24px" />
-            <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
-          </Row0>
-        </Link>
-      </RowSpacebetween>
-    </Row0>
+        <RowSpacebetween
+          width="100%"
+          maxWidth="900px"
+          padding="16px 0"
+        >
+          <Link to="/">
+            <Row0 alignItems="center">
+              <HomeIcon width="24px" height="24px" />
+              <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
+            </Row0>
+          </Link>
+          <Link to="/report">
+            <Row0 alignItems="center">
+              <ReportIcon width="24px" height="24px" />
+              <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
+            </Row0>
+          </Link>
+        </RowSpacebetween>
+      </Row0>
+    </div>
   );
 }
 

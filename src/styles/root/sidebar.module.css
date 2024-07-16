@@ -1,4 +1,7 @@
 .sidebarContainer {
+  position: sticky;
+  top: 0;
+
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
