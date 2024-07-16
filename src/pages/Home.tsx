@@ -1,12 +1,14 @@
 import { Col92, Col32, Col4 } from "@components/atomic/rowAndColumns/Col.tsx";
 import { Row12 } from "@components/atomic/rowAndColumns/Row.tsx";
 
-import {homeStyle} from "@styles/index";
-import {ReportScore, ReportChat} from "@/components/report";
+import { homeStyle } from "@styles/index";
+import { ReportScore, ReportChat } from "@/components/report";
 
 import bannerAImg from "@assets/img/bannerA.png"
 import bannerBImg from "@assets/img/bannerB.png"
 import Button from "@/components/common/Button";
+import getReport from "@/api/report";
+import { useEffect, useState } from "react";
 
 function CharacterItem({ title, subTitle }: { title: string, subTitle: string }) {
   return (
@@ -73,15 +75,21 @@ const chatData = [
 ];
 
 function LastReport() {
+  const [score, setScore] = useState(0)
+
+  useEffect(() => {
+    getReport("0").then(res => setScore(res.average_pronunciation))
+  }, [])
+
   return (
     <Col32>
       <span className="text-s-24">마지막 리포트</span>
       <ReportScore
-        allScore={82}
+        allScore={score}
         subScore={{
-          accuracy: 16,
-          completeness: 74,
-          fluency: 53,
+          accuracy: Math.floor(score * 0.7),
+          completeness: Math.floor(score * 0.6),
+          fluency: Math.floor(score * 0.73),
         }}
       />
       <ReportChat
