@@ -67,6 +67,7 @@ class Voice {
 function Chat() {
   const { chattingName } = useParams()
 
+  const [loading, setLoading] = useState(false)
   const [chatList, setChatList] = useState<Array<ChatMessage>>([]);
   const [isRecording, setIsRecording] = useState(false)
   const voice = useRef<Voice | null>(null)
@@ -80,6 +81,7 @@ function Chat() {
   }, [chattingName])
 
   const handleVoiceBtnClick = async () => {
+    setLoading(true)
     setIsRecording((prev) => {
       const next = !prev;
 
@@ -95,6 +97,7 @@ function Chat() {
       } else {
         if (voice.current) {
           putChat(chattingName ?? "0", voice.current.samplesList).then(result => {
+            setLoading(false)
             if (result) {
               const { userMessage, characterMessage } = result;
               setChatList(chatList => [...chatList, userMessage, characterMessage]);
@@ -121,7 +124,7 @@ function Chat() {
             (() => {
               const VoiceBtn = isRecording ? VoiceRecBtnIcon : VoiceBtnIcon;
 
-              return <VoiceBtn width={100} height={100} onClick={handleVoiceBtnClick} />
+              return <VoiceBtn style={{ filter: loading ? "contrast(0.2)" : "" }} width={100} height={100} onClick={handleVoiceBtnClick} />
             })()
           }
         </div>

@@ -35,3 +35,7 @@ a {
 .text-m-24, .text-s-24 {font-size: 24px;}
 
 .underline {text-decoration: underline;}
+
+.you-failed {
+  color: red;
+}
