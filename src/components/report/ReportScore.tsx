@@ -102,7 +102,7 @@ function ReportScore({allScore, subScore}: ReportScoreProps) {
       <Row0 alignItems="center" width="100%">
         <AllScoreCircle scorePercentage={allScore}/>
         <Row0 width="100%" justifyContent="space-evenly">
-          {Object.entries(subScore).map(([key, value]) => <DetailScoreCircle title={getDetailScoreTitle(key)} scorePercentage={value} />)}
+          {Object.entries(subScore).map(([key, value]) => <DetailScoreCircle key={key} title={getDetailScoreTitle(key)} scorePercentage={value} />)}
         </Row0>
       </Row0>
       <span className="text-m-16 underline" style={{color: "var(--gray800)"}}>평가 기준을 더 자세히 알아볼까요?</span>

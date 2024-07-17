@@ -1,20 +1,20 @@
-import {Fragment, ReactNode, useEffect, useState} from "react";
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import { Fragment, ReactNode, useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import tmpImage from "@assets/profileTMPImage.jpg";
-import {SettingIcon, HomeIcon, ReportIcon} from "@assets/icons";
+import { SettingIcon, HomeIcon, ReportIcon } from "@assets/icons";
 
-import {Row0, Row2, Row8, RowSpacebetween} from "@components/atomic/rowAndColumns/Row.tsx";
-import {Col0, Col4} from "@components/atomic/rowAndColumns/Col.tsx";
-import {Divider} from "@components/atomic";
+import { Row0, Row2, Row8, RowSpacebetween } from "@components/atomic/rowAndColumns/Row.tsx";
+import { Col0, Col4 } from "@components/atomic/rowAndColumns/Col.tsx";
+import { Divider } from "@components/atomic";
 
-import {appStyle, sidebarStyle} from "@styles/index";
-import {getList} from "@api/index";
+import { appStyle, sidebarStyle } from "@styles/index";
+import { getList } from "@api/index";
 
 
 function Header() {
   return (
-    <div style={{position: "sticky", top: "0", right: "0", width: "100%"}}>
+    <div style={{ position: "sticky", top: "0", right: "0", width: "100%", zIndex:9999 }}>
       <Row0
         justifyContent="center"
         width="100%"
@@ -30,13 +30,13 @@ function Header() {
           <Link to="/">
             <Row0 alignItems="center">
               <HomeIcon width="24px" height="24px" />
-              <span className="text-m-16" style={{color: "var(--gray800)"}}>홈</span>
+              <span className="text-m-16" style={{ color: "var(--gray800)" }}>홈</span>
             </Row0>
           </Link>
           <Link to="/report">
             <Row0 alignItems="center">
               <ReportIcon width="24px" height="24px" />
-              <span className="text-m-16" style={{color: "var(--gray800)"}}>리포트</span>
+              <span className="text-m-16" style={{ color: "var(--gray800)" }}>리포트</span>
             </Row0>
           </Link>
         </RowSpacebetween>
@@ -45,7 +45,7 @@ function Header() {
   );
 }
 
-function LayoutWithHeader({children}: {children: ReactNode}) {
+function LayoutWithHeader({ children }: { children: ReactNode }) {
   return (
     <Fragment>
       <Col0 width="100%" overflow="scroll" height="100vh">
@@ -65,7 +65,7 @@ interface characterBarProps {
   sessionId?: number;
 }
 
-function CharacterBar({isActive, characterImage, characterName}: characterBarProps) {
+function CharacterBar({ isActive, characterImage, characterName }: characterBarProps) {
   return (
     <div
       className={sidebarStyle.characterBarContainer}
@@ -80,6 +80,7 @@ function CharacterBar({isActive, characterImage, characterName}: characterBarPro
 function Sidebar() {
   const [characterInfo, setCharacterInfo] = useState<Array<characterBarProps>>([]);
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
   useEffect(() => {
     getList().then(data => {
@@ -100,10 +101,10 @@ function Sidebar() {
   }, []);
 
   const sidebarNavigationHandler = (character: characterBarProps, index: number) => {
-    if(!character.isActive) {
+    if (!character.isActive) {
       const tmpCharacterInfo = [...characterInfo];
-      for(let i = 0; i < tmpCharacterInfo.length; i++) {
-        if(tmpCharacterInfo[i].isActive) {
+      for (let i = 0; i < tmpCharacterInfo.length; i++) {
+        if (tmpCharacterInfo[i].isActive) {
           tmpCharacterInfo[i].isActive = false;
           break;
         }
@@ -124,21 +125,22 @@ function Sidebar() {
     <div className={sidebarStyle.sidebarContainer}>
       <Row8 alignItems="center">
         <div className={sidebarStyle.profileImageContainer}>
-          <img src={tmpImage} alt="profileImage" className={sidebarStyle.profileImage}/>
+          <img src={tmpImage} alt="profileImage" className={sidebarStyle.profileImage} />
         </div>
         <Col4>
           <span className="text-m-20">이서율</span>
           <Row2 alignItems="center">
-            <SettingIcon/>
-            <span style={{color: "var(--gray800)", textDecoration: "underline"}} className="text-m-16">설정</span>
+            <SettingIcon />
+            <span style={{ color: "var(--gray800)", textDecoration: "underline" }} className="text-m-16">설정</span>
           </Row2>
         </Col4>
       </Row8>
-      <Divider/>
+      <Divider />
       {characterInfo.map((item, index) =>
         <div key={index} onClick={() => sidebarNavigationHandler(item, index)}>
           <CharacterBar
-            isActive={item.isActive}
+            // isActive={item.isActive}
+            isActive={pathname.endsWith(String(item.sessionId))}
             characterImage={item.characterImage}
             characterName={item.characterName}
           />
@@ -148,7 +150,7 @@ function Sidebar() {
   );
 }
 
-function LayoutWithSidebar({children}: {children: ReactNode}) {
+function LayoutWithSidebar({ children }: { children: ReactNode }) {
   return (
     <Fragment>
       <Sidebar />

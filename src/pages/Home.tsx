@@ -90,11 +90,11 @@ function LastReport() {
     <Col32>
       <span className="text-s-24">마지막 리포트</span>
       <ReportScore
-        allScore={score}
+        allScore={Math.floor(score)}
         subScore={{
-          accuracy: Math.floor(score * 0.7),
-          completeness: Math.floor(score * 0.6),
-          fluency: Math.floor(score * 0.73),
+          accuracy: Math.floor(score * 0.9),
+          completeness: Math.floor(score * 0.8),
+          fluency: Math.floor(score * 0.75),
         }}
       />
       <ReportChat
