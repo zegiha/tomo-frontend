@@ -109,7 +109,7 @@ function Chat() {
     })
   }
   return (
-    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%">
+    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%" height="100vh">
       <Col20 width="100%" flex="1" padding="0 0 32px 0">
         {chatList.map((e, i) =>
           <ChatBox key={i} profileImgUrl={"https://r2.etty.dev/bb.jpg"} isMine={e.isMine} messages={e.messages} />

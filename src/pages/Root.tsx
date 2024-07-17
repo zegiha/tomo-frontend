@@ -48,7 +48,7 @@ function Header() {
 function LayoutWithHeader({children}: {children: ReactNode}) {
   return (
     <Fragment>
-      <Col0 width="100%">
+      <Col0 width="100%" overflow="scroll" height="100vh">
         <Header />
         {children}
       </Col0>
