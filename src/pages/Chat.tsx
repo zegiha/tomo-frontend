@@ -77,7 +77,7 @@ function Chat() {
       else console.log("getSessionLog api error");
       console.log(result);
     })
-  }, [])
+  }, [chattingName])
 
   const handleVoiceBtnClick = async () => {
     setIsRecording((prev) => {
