@@ -1,17 +1,11 @@
 import {Col12, Col20} from "@components/atomic/rowAndColumns/Col.tsx";
 import {Row12} from "@components/atomic/rowAndColumns/Row.tsx";
-import ChatBox from "@components/chat/ChatBox.tsx";
+import ChatBox, { IMessage } from "@components/chat/ChatBox.tsx";
 
-interface messageType {
-  id: string;
-  formattedText: string,
-  formattedCorrectText?: string,
-  formattedCorrectPronounceText?: string,
-}
 interface chatData {
   isMine: boolean,
   profileImageURL: string,
-  messages: Array<messageType>
+  messages: IMessage[]
 }
 
 function ReportChat({chatData}: {chatData: Array<chatData>}) {

@@ -9,6 +9,7 @@ import bannerBImg from "@assets/img/bannerB.png"
 import Button from "@/components/common/Button";
 import getReport from "@/api/report";
 import { useEffect, useState } from "react";
+import { getList } from "@/api";
 
 function CharacterItem({ title, subTitle }: { title: string, subTitle: string }) {
   return (
@@ -78,22 +79,26 @@ function LastReport() {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-    getReport("0").then(res => setScore(res.average_pronunciation))
+    getList().then(res => {
+      const last = res.sort((a: any, b: any) => b.last_active - a.last_active)[0]
+      getReport(last.session_id).then(res => setScore(res.average_pronunciation))
+    })
+
   }, [])
 
   return (
     <Col32>
       <span className="text-s-24">마지막 리포트</span>
       <ReportScore
-        allScore={score}
+        allScore={Math.floor(score)}
         subScore={{
-          accuracy: Math.floor(score * 0.7),
-          completeness: Math.floor(score * 0.6),
-          fluency: Math.floor(score * 0.73),
+          accuracy: Math.floor(score * 0.9),
+          completeness: Math.floor(score * 0.8),
+          fluency: Math.floor(score * 0.75),
         }}
       />
       <ReportChat
-        chatData={chatData}
+        chatData={chatData as any}
       />
     </Col32>
   );

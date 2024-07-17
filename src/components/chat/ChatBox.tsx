@@ -2,12 +2,12 @@ import classNames from "classnames/bind"
 import { Col8 } from "../atomic/rowAndColumns/Col"
 import styles from "@styles/chat.module.css"
 import { TranslateIcon } from "@/assets/icons"
-import {useEffect, useState} from "react"
+import { useState } from "react"
 import { Row8 } from "../atomic/rowAndColumns/Row"
 
 const cn = classNames.bind(styles)
 
-interface IMessage {
+export interface IMessage {
     id: string
     formattedText: string
     translatedText: string
@@ -17,10 +17,10 @@ interface IMessage {
 
 function BotChatBubble(props: { message: IMessage, isTranslated: boolean }) {
     return <div className={cn("botChatBubble", "text-m-20")}>
-        <div dangerouslySetInnerHTML={{ __html: props.message.formattedText }}/>
-        {props.isTranslated && props.message.translatedText && <div className={cn("sep")}/>}
+        <div dangerouslySetInnerHTML={{ __html: props.message.formattedText }} />
+        {props.isTranslated && props.message.translatedText && <div className={cn("sep")} />}
         {
-          props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{__html: props.message.translatedText}}/>
+            props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{ __html: props.message.translatedText }} />
         }
     </div>
 }
@@ -38,9 +38,9 @@ function MyChatBubble(props: { message: IMessage, isTranslated: boolean }) {
         {
             props.message.formattedCorrectPronounceText && <div dangerouslySetInnerHTML={{ __html: props.message.formattedCorrectPronounceText }} />
         }
-        {props.isTranslated && props.message.translatedText && <div className={cn("sep")}/>}
+        {props.isTranslated && props.message.translatedText && <div className={cn("sep")} />}
         {
-          props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{__html: props.message.translatedText}}/>
+            props.isTranslated && props.message.translatedText && <div dangerouslySetInnerHTML={{ __html: props.message.translatedText }} />
         }
     </div>
 }

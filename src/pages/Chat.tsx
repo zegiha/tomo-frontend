@@ -67,6 +67,7 @@ class Voice {
 function Chat() {
   const { chattingName } = useParams()
 
+  const [loading, setLoading] = useState(false)
   const [chatList, setChatList] = useState<Array<ChatMessage>>([]);
   const [isRecording, setIsRecording] = useState(false)
   const voice = useRef<Voice | null>(null)
@@ -77,9 +78,10 @@ function Chat() {
       else console.log("getSessionLog api error");
       console.log(result);
     })
-  }, [])
+  }, [chattingName])
 
   const handleVoiceBtnClick = async () => {
+    setLoading(true)
     setIsRecording((prev) => {
       const next = !prev;
 
@@ -95,6 +97,7 @@ function Chat() {
       } else {
         if (voice.current) {
           putChat(chattingName ?? "0", voice.current.samplesList).then(result => {
+            setLoading(false)
             if (result) {
               const { userMessage, characterMessage } = result;
               setChatList(chatList => [...chatList, userMessage, characterMessage]);
@@ -109,7 +112,7 @@ function Chat() {
     })
   }
   return (
-    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%" height="calc(100vh - 58px)">
+    <Col0 padding="46px 0px 0px 0px" maxWidth="900px" margin="0 auto" width="100%" height="100vh">
       <Col20 width="100%" flex="1" padding="0 0 32px 0">
         {chatList.map((e, i) =>
           <ChatBox key={i} profileImgUrl={"https://r2.etty.dev/bb.jpg"} isMine={e.isMine} messages={e.messages} />
@@ -121,7 +124,7 @@ function Chat() {
             (() => {
               const VoiceBtn = isRecording ? VoiceRecBtnIcon : VoiceBtnIcon;
 
-              return <VoiceBtn width={100} height={100} onClick={handleVoiceBtnClick} />
+              return <VoiceBtn style={{ filter: loading ? "contrast(0.2)" : "" }} width={100} height={100} onClick={handleVoiceBtnClick} />
             })()
           }
         </div>

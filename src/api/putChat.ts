@@ -1,4 +1,4 @@
-import { ChatMessage } from "@types/chat/messageTypes.ts";
+import { ChatMessage } from "../types/chat/messageTypes.ts"
 import baseAxios from "./axios.ts";
 
 function concatFloat32Array(arrays: Float32Array[]) {
