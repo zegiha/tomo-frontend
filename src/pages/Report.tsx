@@ -61,7 +61,7 @@ function Report() {
                 return (
                   <DateReportList date={v.date} key={v.date}>
                     <ReportScore {...v.reportScore}/>
-                    <ReportChat chatData={v.chatData}/>
+                    <ReportChat chatData={v.chatData as any}/>
                   </DateReportList>
                 );
               })}

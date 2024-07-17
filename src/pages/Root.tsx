@@ -86,7 +86,7 @@ function Sidebar() {
     getList().then(data => {
       const characterList: Array<characterBarProps> = [];
 
-      data.map(v => {
+      data.map((v: { session_id: any; name: any; }) => {
         const tmpInfo = {
           isActive: false,
           sessionId: v.session_id,

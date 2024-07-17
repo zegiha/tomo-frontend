@@ -98,7 +98,7 @@ function LastReport() {
         }}
       />
       <ReportChat
-        chatData={chatData}
+        chatData={chatData as any}
       />
     </Col32>
   );
